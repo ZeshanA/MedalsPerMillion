@@ -1,0 +1,359 @@
+/* =============================================================================
+   CSS Reset
+   ========================================================================== */
+
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+dialog,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+font,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+hr,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+meter,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+progress,
+q,
+rp,
+rt,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video,
+xmp {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  font-family:'Helvetica Neue', 'Helvetica', 'Museo Sans 500', 'Museo Sans', 'Liberation Sans', FreeSans, Arial, sans-serif;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+img {
+  color: transparent;
+  font-size: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+li {
+  display: list-item;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th,
+td,
+caption {
+  font-weight: normal;
+  vertical-align: top;
+  text-align: left;
+}
+
+q {
+  quotes: none;
+}
+
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+sub,
+sup,
+small {
+  font-size: 75%;
+}
+
+sub,
+sup {
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+svg {
+  overflow: hidden;
+}
+
+/* ===== Primary Styles ========================================================
+   Author: Zeshan Amjad
+   ========================================================================== */
+
+@font-face {
+    font-family: 'MuseoSans700';
+    src: url('../fonts/museosans_700-webfont.eot');
+    src: url('../fonts/museosans_700-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/museosans_700-webfont.woff') format('woff'),
+         url('../fonts/museosans_700-webfont.ttf') format('truetype'),
+         url('../fonts/museosans_700-webfont.svg#') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {
+  font-family:'MuseoSans700', 'Museo Sans 700', 'Helvetica', Arial, sans-serif;
+  font-weight:bold;
+  background:url(../img/bg.jpg) center no-repeat;
+  background-attachment: fixed;
+  background-size:cover;
+}
+
+a {
+  color:inherit;
+  text-decoration: none;
+}
+
+.content {
+  min-width:100%;
+  min-height:100%;
+  margin:0 auto;
+}
+
+.loading {
+  width:32px;
+  height:32px;
+  padding:10px;
+  position:absolute;
+  left:50%;
+  top:50%;
+  margin-left:-32px;
+  margin-top:-32px;
+  background:rgba(0,0,0,0.5);
+  border-radius:6px;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.9);
+}
+
+.table {
+  width:70%;
+  max-width:1500px;
+  height:auto;
+  position:relative;
+  top:100px;
+  margin:0 auto;
+  margin-bottom: 30px;
+  color:#2a2a2a;
+  border-radius: 6px;
+  box-shadow:0 0 0 1px rgba(0,0,0,0.5), 0 2px 3px rgba(0,0,0,0.5);
+}
+
+.headerRow {
+  background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.75) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0.75)));
+  background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0.75) 100%);
+  background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0.75) 100%);
+  background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0.75) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0.75) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#bfffffff',GradientType=0 );
+}
+
+.headerRow th {
+  padding:10px;
+}
+
+.headerRow th:first-child {
+  border-radius: 6px 0 0 0;
+  cursor:pointer;
+}
+
+.headerRow th:nth-child(2) {
+  cursor: pointer;
+}
+
+.headerRow th:last-child {
+  border-radius: 0 6px 0 0;
+  cursor:pointer;
+}
+
+.header.medal.num, .row td:nth-child(5) {
+  padding-left:30px;
+}
+
+.row {
+  height:44px;
+  font-size:0.875em;
+  box-shadow:inset 0 0 0 1px #000;
+}
+
+.row td {
+  padding:15px 10px 10px 10px;
+  border-top:solid 1px rgba(0,0,0,0.2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.row .medal, .row .stat {
+  padding-top:14px;
+  font-size:1.125em;
+}
+
+.row:nth-child(even) {
+  background:rgba(255,255,255,0.75);
+}
+
+.row:nth-child(odd) {
+  background:rgba(255,255,255,0.6);
+}
+
+.row:last-child td:first-child {
+  border-radius:0 0 0 6px;
+}
+
+.row:last-child td:last-child {
+  border-radius:0 0 6px 0;
+}
+
+.country.name {
+  margin-left:10px;
+}
+
+.spacer {
+  width:100%;
+  height:20%;
+}
+
+.footer {
+  padding:0.4em 0.6em;
+  position:fixed;
+  right:0;
+  bottom:0;
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size:0.75em;
+  color:#ccc;
+  background:#333;
+  background:rgba(0,0,0,0.5);
+  border-top-left-radius:3px;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.4);
+}
+
+.footer a {
+  color:#fff;
+}
+
+
+/* =============================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (max-width: 35em) {
+
+  body {
+    background:url(../img/smallBG.jpg) center no-repeat;
+    background-attachment: fixed;
+    background-size:cover;
+  }
+
+  .table {
+    top:30px;
+  }
+
+}
