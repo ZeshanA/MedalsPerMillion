@@ -6,39 +6,80 @@
 
 	$(document).ready(function() {
 
-		// Raw maps of ISO codes for countries + populations
-		var countries,
-			nameToISO;
+		// Create object holding countries
+		var countries = {},
+			renderHTML = function(country) {
+				console.log(country);
+				var row = $('<tr class="row"></tr>').css("display", "block").appendTo('.table tbody'),
+					countryName = $('<td class="country"><img class="flag" src="img/' + country.code + '.png" /><span class="country name">' + country.country + '</span></td>').appendTo(row),
+					golds = $('<td class="golds">' + country.gold + '</td>').appendTo(row),
+					silvers = $('<td class="silvers">' + country.silver + '</td>').appendTo(row),
+					bronzes = $('<td class="bronzes">' + country.bronze + '</td>').appendTo(row),
+					medals = $('<td class="medal">' + country.total + '</td>').appendTo(row),
+					perMil = $('<td class="stat">' + (country.total / (country.population / 1000000)).toFixed(8) + '</td>').appendTo(row);
+			},
+			sortTable = function() {
+				// Sort table according to medals per millions, set whole TH to be clickable for sorting
+				TableSort.click(0, 2, "num");
+				TableSort.click(0, 2, "num");
 
-		$.ajax({
-			url: 'https://restcountries.eu/rest/v1/all',
-			dataType: 'jsonp',
-			success:function(data){
-				console.log(data);
-				countries = data,
-				nameToISO = function(countryName) {
-					var matchFound = false;
-					for(var i=0, len = countries.length; i<len; i++) {
-						matchFound = countries[i].name === countryName;
-						if(matchFound) {
-							return countries[i].alpha2Code;
-						}
-					}
+				// Show rows, hide loading.gif
+				$('.row').show('slow');
+				$('.loading').hide('slow');
+			};
+
+		// Request Olympic data
+		$.getJSON('/data/olympic2.json', function(data){
+
+			countries = data;
+
+			// Request country code and statistics
+			$.ajax({
+				url: 'https://restcountries.eu/rest/v1/all',
+				dataType: 'json',
+				type: 'GET',
+				error: function(a,b,c) {
+					console.log(a);
+					console.log(b);
+					console.log(c);
 				},
+				success: function(data) {
 
-				// Olympic Medals
+					// Loop through each country in Olympic table
+					for (var i = 0, countryName; i < countries.length; i++) {
 
-				$.getJSON('/data/olympic2.json', function(results){
-					var countryName,
-						countryCode,
-						i;
-					for(i=0;i<results.length;i++) {
-						countryName = results[i].name;
-						console.log(nameToISO(countryName));
-					}
-				});
-			}
-		});
+						// Cache the current country name
+						countryName = countries[i].country;
+
+						// Loop through the country statistics array
+						for (var j = 0; j < data.length; j++) {
+
+							// If the country names match
+							if(data[j].name === countryName) {
+
+								// Transfer country statistics to its object in Olympic table
+								countries[i].code = data[j].alpha2Code;
+								countries[i].population = data[j].population;
+
+								// Render HTML
+								renderHTML(countries[i]);
+
+								// Stop looping through the country statistics database
+								break;
+							}
+						};
+
+						// When stats for all countries added, run table sort
+						if(i === countries.length - 1) {
+							sortTable();
+						}
+
+					};
+
+				}
+			});
+
+		})
 
 	});
 
