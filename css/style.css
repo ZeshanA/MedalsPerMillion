@@ -254,7 +254,6 @@ a {
   background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0.75) 100%);
   background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0.75) 100%);
   background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0.75) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#bfffffff',GradientType=0 );
 }
 
 .headerRow th {
