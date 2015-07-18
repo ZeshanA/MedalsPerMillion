@@ -1,0 +1,353 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+/* ==== Mixins, Fonts, Animations, Variables ==== */
+
+@import 'normalize';
+
+@include font-face('Neo Sans', '/fonts/neosans-webfont');
+
+@mixin bgGradient {
+	@include linear-gradient(135deg, #1e1221 20%, #00d5aa 100%);
+}
+
+@include keyframes(rotate) {
+	from {
+		@include transform(rotate(0deg));
+	}
+	to {
+		@include transform(rotate(360deg));
+	}
+}
+
+$borderColor: rgba(255,255,255,0.1);
+$gold: #f6bc32;
+$silver: #cef0f3;
+$bronze: #FFBA98;
+
+/* ==== Body and Background ==== */
+
+body {
+	color: #fff;
+	font: {
+		family: 'Neo Sans', 'Fira Sans', 'Helvetica Neue', 'Arial', sans-serif;
+	}
+	background: {
+		attachment: scroll;
+		color: #00d5aa;
+		size: cover;
+	}
+
+	&:before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		display: block;
+		z-index: -1;
+		@include bgGradient;
+	}
+}
+
+/* ==== Link ==== */
+
+a {
+	color: #05ff9e;
+
+	&:hover {
+		color: lighten(#05ff9e, 30%);
+	}
+
+	&:active {
+		@include transform(translateY(1px));
+	}
+}
+
+/* ==== Loading Icon ==== */
+
+.loading {
+	width: 30px;
+	height: 30px;
+	margin: 60px auto;
+	border: solid 5px rgba(255,255,255,0.1) {
+		top: solid 5px rgba(255,255,255,0.8);
+		radius: 60px;
+	}
+
+	@include animation(rotate infinite 0.5s linear);
+}
+
+/* ==== Header ==== */
+
+header {
+	padding: 60px 0 30px 0;
+	text-align: center;
+}
+
+h1, h2 {
+	margin: 0 auto;
+	font-weight: normal;
+}
+
+h1 {
+	padding-bottom: 10px;
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 0.875em;
+	padding: 0 10px 0 10px;
+	opacity: 0.7;
+}
+
+/* ==== Table Styles ==== */
+
+.table {
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+
+	.country {
+		text-align: left;
+	}
+
+	.gold {
+		color: $gold;
+	}
+
+	.silver {
+		color: $silver;
+	}
+
+	.bronze {
+		color: $bronze;
+	}
+}
+
+thead {
+	border-bottom: solid 2px $borderColor;
+}
+
+th {
+	cursor: pointer;
+	font-size: 1.25em;
+	@include transition(opacity 0.3s ease);
+
+	&:hover {
+		opacity: 0.7;
+	}
+
+	&:active {
+		opacity: 0.5;
+		@include transform(translateY(1px));
+	}
+
+	&.medal:before {
+		content:'';
+		width: 14px;
+		height: 14px;
+		margin-right: 10px;
+		border-radius: 14px;
+		display: inline-block;
+	}
+
+	&.gold.medal:before {
+		background: $gold;
+	}
+
+	&.silver.medal:before {
+		background: $silver;
+	}
+
+	&.bronze.medal:before {
+		background: $bronze;
+	}
+}
+
+tr {
+	width: 100%;
+}
+
+td, th {
+	padding: 10px 15px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+tbody tr {
+	border-bottom: solid 1px $borderColor;
+
+	&:nth-child(2n) {
+		background: rgba(255,255,255,0.05);
+	}
+}
+
+/* ==== Fixed Table Header ==== */
+
+#fixedHeaderWrap {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	overflow: hidden;
+	background-color: rgba(30,18,33,0.9);
+	box-shadow: 0 1px 0 $borderColor;
+	visibility: hidden;
+
+	thead {
+		border: none;
+	}
+
+	th {
+		padding-top: 15px;
+		padding-bottom: 12px;
+	}
+}
+
+/* ==== Country Flags ==== */
+
+.flag {
+	width: 32px;
+	height: 32px;
+	margin-right: 15px;
+	background: {
+		repeat: no-repeat;
+		image: url(/img/countries.png);
+	};
+	display:inline-block;
+	overflow:hidden;
+	vertical-align:middle;
+}
+
+@import 'countries';
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+/* ==== Remove Medal Labels (G,S,B) ==== */
+@media only screen and (max-width: 700px) {
+
+	th.medal {
+
+		&:before {
+			margin-right: 0;
+		}
+
+		font-size: 0;
+	}
+
+}
+
+/* ==== Mobile View ==== */
+@media only screen and (max-width: 650px) {
+
+	body {
+		font-size: 0.8em;
+	}
+
+	h2 {
+		font-size: 1em;
+	}
+
+	.flag {
+		width: 16px;
+		height: 16px;
+		margin-right: 8px;
+	}
+
+	.table td.country {
+		text-align: left;
+		line-height: 150%;
+		display: inline-block;
+	}
+
+	th, td {
+		padding: 10px 5px;
+	}
+
+	th.country {
+		width: 150px;
+	}
+
+	.total {
+		display: none;
+	}
+
+}
+
+/* ==== @2x Flag Icons ==== */
+@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 120dpi) {
+	   	@import 'countries@2x';
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+	* {
+		background: transparent !important;
+		color: #000 !important; /* Black prints faster: h5bp.com/s */
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+
+	a,
+	a:visited {
+		text-decoration: underline;
+	}
+
+	a[href]:after {
+		content: " (" attr(href) ")";
+	}
+
+	abbr[title]:after {
+		content: " (" attr(title) ")";
+	}
+
+	/*
+	 * Don't show links for images, or javascript/internal links
+	 */
+
+	.ir a:after,
+	a[href^="javascript:"]:after,
+	a[href^="#"]:after {
+		content: "";
+	}
+
+	pre,
+	blockquote {
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
+
+	thead {
+		display: table-header-group; /* h5bp.com/t */
+	}
+
+	tr,
+	img {
+		page-break-inside: avoid;
+	}
+
+	img {
+		max-width: 100% !important;
+	}
+
+	@page {
+		margin: 0.5cm;
+	}
+
+	p,
+	h2,
+	h3 {
+		orphans: 3;
+		widows: 3;
+	}
+
+	h2,
+	h3 {
+		page-break-after: avoid;
+	}
+}

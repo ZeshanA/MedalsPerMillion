@@ -1,0 +1,10 @@
+/* TEAM */
+  Designer and Developer: Zeshan Amjad
+  Site: http://ZeshanA.me/
+  Twitter: @ZeshanA
+  Location: Rochdale, United Kingdom
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: Modernizr, jQuery
+  Boilerplate: HTML5BP
