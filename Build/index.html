@@ -11,30 +11,8 @@
 		<meta name="viewport" content="width=device-width">
 
 		<!-- Stylesheets -->
-		<link rel='stylesheet' href='css/style.css'>
+		<link rel='stylesheet' href='c5146a39abcba9d504b2f0778123d471.css'>
 		
-        <!-- Hammer reload -->
-          <script>
-            setInterval(function(){
-              try {
-                if(typeof ws != 'undefined' && ws.readyState == 1){return true;}
-                ws = new WebSocket('ws://'+(location.host || 'localhost').split(':')[0]+':35353')
-                ws.onopen = function(){ws.onclose = function(){document.location.reload()}}
-                ws.onmessage = function(){
-                  var links = document.getElementsByTagName('link'); 
-                    for (var i = 0; i < links.length;i++) { 
-                    var link = links[i]; 
-                    if (link.rel === 'stylesheet' && !link.href.match(/typekit/)) { 
-                      href = link.href.replace(/((&|\?)hammer=)[^&]+/,''); 
-                      link.href = href + (href.indexOf('?')>=0?'&':'?') + 'hammer='+(new Date().valueOf());
-                    }
-                  }
-                }
-              }catch(e){}
-            }, 1000)
-          </script>
-        <!-- /Hammer reload -->
-      
 
 		<!-- Icons -->
 		<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png?v=oLLLnk63d">
@@ -87,8 +65,7 @@
 		<script>window.jQuery || document.write('<script src="js/lib/jquery-1.11.3.min.js"><\/script>')</script>
 
 		<!-- Scripts -->
-		<script src='js/plugins.js'></script>
-<script src='js/main.js'></script>
+		<script src='a2eeb4e77d3514619e0d13a973887449.js'></script>
 
 		<!-- GoSquared -->
 		<script>
