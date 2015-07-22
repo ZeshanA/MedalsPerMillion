@@ -1,6 +1,6 @@
 /* TEAM */
   Designer and Developer: Zeshan Amjad
-  Site: http://ZeshanA.me/
+  Site: http://zeshan.me/
   Twitter: @ZeshanA
   Location: Rochdale, United Kingdom
 
